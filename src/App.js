@@ -921,7 +921,8 @@ function App() {
     const preloader = document.getElementById('preloader');
     if (preloader) {
       window.addEventListener('load', () => {
-        setTimeout(() => { preloader.classList.add('preloader-hidden'); }, 500); 
+        // MODIFIED: Changed preloader timeout from 500ms to 2000ms (2 seconds)
+        setTimeout(() => { preloader.classList.add('preloader-hidden'); }, 2000); 
       });
     }
   }, []);
