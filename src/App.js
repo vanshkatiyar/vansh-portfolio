@@ -920,12 +920,11 @@ function App() {
   useEffect(() => {
     const preloader = document.getElementById('preloader');
     if (preloader) {
-      // FIX: Removed the unreliable 'window.load' event listener.
-      // The timeout now runs directly after the App component mounts,
-      // ensuring the preloader is hidden on all devices, including mobile.
+      // Set a 2-second timeout to hide the preloader.
+      // This runs after the App component mounts, ensuring it works on all devices.
       setTimeout(() => {
         preloader.classList.add('preloader-hidden');
-      }, 2000); // 2-second delay
+      }, 2000); 
     }
   }, []);
 
