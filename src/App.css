@@ -1,38 +1,307 @@
-.App {
+/*
+========================================
+    1. GLOBAL STYLES & RESET
+========================================
+*/
+:root {
+    --primary-color: #e55858; /* Red from your buttons */
+    --background-color: #fdf6f6; /* Off-white from your screenshot */
+    --text-color: #ffffff;
+    --dark-text: #333;
+    --font-family: 'Poppins', sans-serif; /* Recommended: Add this font in index.html */
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--dark-text);
+}
+
+/*
+========================================
+    2. NAVBAR STYLES (WITH FIXES)
+========================================
+*/
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: var(--background-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+    /* === KEY FIX 1: FLEXBOX ALIGNMENT & PADDING === */
+    display: flex;
+    justify-content: space-between; /* Pushes logo and controls to opposite ends */
+    align-items: center; /* Vertically aligns all items */
+    padding: 1rem 1.5rem; /* Adds space inside, so content doesn't touch edges */
+}
+
+.nav-logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Creates space between the two buttons */
+}
+
+.theme-switcher,
+.menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--dark-text);
+}
+
+/*
+========================================
+    3. HERO SECTION STYLES (WITH FIXES)
+========================================
+*/
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://i.imgur.com/GkG1Yf8.jpeg'); /* Placeholder background */
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: var(--text-color);
+    text-align: left;
+    
+    /* === KEY FIX 2: SYMMETRICAL PADDING === */
+    width: 100%;
+    max-width: 550px; /* Optional: constrain width on larger screens */
+    padding: 2rem 1.5rem; /* Adds equal space on left and right, matching the navbar */
+}
+
+.hero-content h1 {
+    font-size: clamp(2.5rem, 10vw, 3.5rem); /* Responsive font size */
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 4vw, 1.1rem);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(229, 88, 88, 0.4);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+}
+
+.btn-secondary i {
+    margin-right: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .hero-buttons {
+        flex-direction: row; /* Buttons side-by-side on larger screens */
+    }
+}
+/* =========================================== */
+/* === RESPONSIVE CSS FOR EDUCATION TIMELINE === */
+/* =========================================== */
+
+/* General Styling for the section */
+.education-section {
+  padding: 80px 15px;
+  background-color: #121212; /* Your dark background color */
+  overflow-x: hidden; /* Prevents horizontal scroll on small devices */
+}
+
+/* A title for your section */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 60px;
+}
+.section-title span {
+  color: #e84949; /* Red highlight color */
+}
+
+/* The main container for the timeline */
+.timeline-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* The vertical dotted line - The CORE of the fix */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 20px; /* Start below the plane icon */
+  bottom: 0;
+  width: 3px;
+  background-image: linear-gradient(to bottom, #e84949 3px, transparent 3px);
+  background-size: 100% 10px;
+
+  /* --- MOBILE STYLES (CENTERED) --- */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Styling for each item in the timeline */
+.timeline-item {
+  position: relative;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+/* The circular icons */
+.timeline-icon {
+  position: absolute;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  background-color: #e84949; /* Red color from your image */
+  border: 3px solid #121212;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: white;
+
+  /* --- MOBILE STYLES (CENTERED) --- */
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+}
+
+/* The paper plane icon at the top */
+.timeline-plane-icon {
+    position: absolute;
+    top: -30px; 
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    color: #e84949;
+    font-size: 24px;
+}
+
+/* The content cards (Bachelor, Class 12, etc.) */
+.timeline-content {
+  background: rgba(40, 40, 40, 0.8);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  
+  /* --- MOBILE STYLES (CENTERED) --- */
+  margin-top: 70px; /* Pushes content below the icon */
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Styling for text inside the cards */
+.timeline-content h2 {
+  color: #e84949;
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+.timeline-content p {
+  color: #fff;
+  margin: 5px 0;
+}
+.timeline-content .date,
+.timeline-content .grade {
+  color: #ccc;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+
+/* ------------------------------------------- */
+/* --- DESKTOP STYLES (for screens > 768px) -- */
+/* ------------------------------------------- */
+@media (min-width: 768px) {
+  
+  /* Reposition the timeline line to the left */
+  .timeline-container::before {
+    left: 25px; 
+    transform: none;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  /* Reposition the paper plane */
+  .timeline-plane-icon {
+      left: 25px;
+      transform: translateX(-50%) rotate(-45deg);
   }
-  to {
-    transform: rotate(360deg);
+
+  /* Reposition the icon onto the left-aligned line */
+  .timeline-icon {
+    left: 25px;
+    transform: translateX(-50%);
+  }
+
+  /* Reposition the content card to the right of the line */
+  .timeline-content {
+    margin-left: 80px; 
+    margin-top: 0;
+    width: auto;
+    text-align: left;
   }
 }
