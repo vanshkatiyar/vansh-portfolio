@@ -1,12 +1,12 @@
-// src/App.js - FINAL CODE (with Mobile Navbar Alignment Fix)
+// src/App.js - FINAL CODE (with C Language & Content Writing Skills)
 
 import React, { useState, useEffect, useRef } from 'react';
 
 // --- DEPENDENCY IMPORTS ---
 import Slider from 'react-slick';
 import { Link as ScrollLink } from 'react-scroll';
-import { FaReact, FaNodeJs, FaPython, FaFigma, FaBars, FaTimes, FaSun, FaMoon, FaGraduationCap, FaSchool, FaLinkedin, FaFacebook, FaInstagram, FaWhatsapp, FaQuoteLeft, FaArrowRight, FaArrowLeft, FaPaperPlane, FaDownload } from 'react-icons/fa';
-import { SiNextdotjs, SiMongodb, SiGooglesearchconsole, SiGmail } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaPython, FaFigma, FaBars, FaTimes, FaSun, FaMoon, FaGraduationCap, FaSchool, FaLinkedin, FaFacebook, FaInstagram, FaWhatsapp, FaQuoteLeft, FaArrowRight, FaArrowLeft, FaPaperPlane, FaDownload, FaPencilAlt } from 'react-icons/fa';
+import { SiNextdotjs, SiMongodb, SiGooglesearchconsole, SiGmail, SiC } from 'react-icons/si';
 
 // --- SLICK CAROUSEL CSS IMPORTS ---
 import "slick-carousel/slick/slick.css"; 
@@ -496,7 +496,7 @@ const About = ({ setElements }) => (
   </AnimatedSection>
 );
 const Skills = ({ setElements }) => {
-  const skillsData = [ { name: 'React.js', icon: <FaReact />, level: '90%' }, { name: 'Node.js', icon: <FaNodeJs />, level: '75%' }, { name: 'Next.js', icon: <SiNextdotjs />, level: '80%' }, { name: 'MongoDB', icon: <SiMongodb />, level: '85%' }, { name: 'Python', icon: <FaPython />, level: '70%' }, { name: 'SEO', icon: <SiGooglesearchconsole />, level: '95%' }, { name: 'UI/UX Design', icon: <FaFigma />, level: '80%' } ];
+  const skillsData = [ { name: 'React.js', icon: <FaReact />, level: '70%' }, { name: 'Node.js', icon: <FaNodeJs />, level: '50%' }, { name: 'Next.js', icon: <SiNextdotjs />, level: '80%' }, { name: 'Python', icon: <FaPython />, level: '95%' }, { name: 'C Language', icon: <SiC />, level: '85%' }, { name: 'Content Writing', icon: <FaPencilAlt />, level: '90%' }, { name: 'UI/UX Design', icon: <FaFigma />, level: '80%' }, { name: 'MongoDB', icon: <SiMongodb />, level: '20%' }, { name: 'SEO', icon: <SiGooglesearchconsole />, level: '40%' } ];
   return (
     <AnimatedSection id="skills" setElements={setElements}>
       <div className="container">
@@ -515,7 +515,7 @@ const Skills = ({ setElements }) => {
   );
 };
 const Projects = ({ setElements }) => {
-  const projectsData = [ { title: "E-commerce Platform", description: "A full-featured e-commerce site with product listings, cart, and checkout.", image: "https://via.placeholder.com/400x250/2575fc/ffffff?text=E-commerce+Site", stack: ["React", "Node.js", "MongoDB"], liveUrl: "#", repoUrl: "#" }, { title: "Portfolio Website", description: "A responsive personal portfolio to showcase my skills and projects.", image: "https://via.placeholder.com/400x250/6a11cb/ffffff?text=Portfolio", stack: ["React", "CSS", "Figma"], liveUrl: "#", repoUrl: "#" }, { title: "Task Management App", description: "A web application for tracking tasks with a clean, intuitive UI.", image: "https://via.placeholder.com/400x250/34d399/ffffff?text=Task+App", stack: ["Next.js", "Python", "MongoDB"], liveUrl: "#", repoUrl: "#" }, { title: "SEO Audit Tool", description: "A tool to analyze website performance and provide SEO recommendations.", image: "https://via.placeholder.com/400x250/f59e0b/ffffff?text=SEO+Tool", stack: ["React", "SEO APIs"], liveUrl: "#", repoUrl: "#" } ];
+  const projectsData = [ { title: " Temperature and Humidity Sensor", description: "A Project based on ESP32 and DHT11 sensor which monitors temperature and humidity of the environment", image: "https://via.placeholder.com/400x250/2575fc/ffffff?text=E-commerce+Site", stack: ["React", "Node.js", "MongoDB"], liveUrl: "#", repoUrl: "#" }, { title: "Portfolio Website", description: "A responsive personal portfolio to showcase my skills and projects.", image: "https://via.placeholder.com/400x250/6a11cb/ffffff?text=Portfolio", stack: ["React", "CSS", "Figma"], liveUrl: "#", repoUrl: "#" }, { title: "Automatic Water Dispensor Sensor", description: "A web application for tracking tasks with a clean, intuitive UI.", image: "https://via.placeholder.com/400x250/34d399/ffffff?text=Task+App", stack: ["Next.js", "Python", "MongoDB"], liveUrl: "#", repoUrl: "#" }, { title: "SEO Audit Tool", description: "A tool to analyze website performance and provide SEO recommendations.", image: "https://via.placeholder.com/400x250/f59e0b/ffffff?text=SEO+Tool", stack: ["React", "SEO APIs"], liveUrl: "#", repoUrl: "#" } ];
   return (
     <AnimatedSection id="projects" setElements={setElements}>
       <div className="container">
@@ -543,7 +543,7 @@ const Projects = ({ setElements }) => {
   );
 };
 const Education = ({ setElements }) => {
-    const educationData = [ { icon: <FaGraduationCap />, degree: 'Bachelor of Technology - CSE', institution: 'Jiet Universe', years: '2024 - 2028', result: 'CGPA: 9.1' }, { icon: <FaSchool />, degree: 'Class 12 - Science', institution: 'Central Academy Sr.sec School', years: '2022 - 2023', result: 'Percentage: 74' }, { icon: <FaSchool />, degree: 'Class 10', institution: 'Central Academy Sr.sec School', years: '2020 - 2021', result: 'Percentage: 91' } ];
+    const educationData = [ { icon: <FaGraduationCap />, degree: 'Bachelor of Technology - CSE', institution: 'JODHPUR INSTITUTE OF ENGINEERING AND TECHNOLOGY', years: '2024 - 2028', result: 'CGPA: 9.1' }, { icon: <FaSchool />, degree: 'Class 12 - Science', institution: 'Central Academy Sr.sec School', years: '2022 - 2023', result: 'Percentage: 74' }, { icon: <FaSchool />, degree: 'Class 10', institution: 'Central Academy Sr.sec School', years: '2020 - 2021', result: 'Percentage: 91' } ];
   return (
     <AnimatedSection id="education" setElements={setElements} animation={null}>
       <div className="container">
