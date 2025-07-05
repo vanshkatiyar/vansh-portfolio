@@ -9,16 +9,16 @@ import { FaReact, FaNodeJs, FaPython, FaFigma, FaBars, FaTimes, FaSun, FaMoon, F
 import { SiNextdotjs, SiMongodb, SiGooglesearchconsole, SiGmail, SiC } from 'react-icons/si';
 
 // --- SLICK CAROUSEL CSS IMPORTS ---
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
 // --- PROFILE & ASSET IMAGES ---
-const profileImage = "/images/profile.jpg"; 
+const profileImage = "/images/profile.jpg";
 const blogImage1 = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=1740";
 const blogImage2 = "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=1740";
 const blogImage3 = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1740";
-const resumeFile = "/files/Vansh-Katiyar-Resume.pdf"; 
+const resumeFile = "/files/Vansh-Katiyar-Resume.pdf";
 const customCursorImage = "/images/red-cursor.png";
 
 //================================================================================
@@ -82,10 +82,9 @@ const GlobalStyles = () => (
     .navbar-logo { font-size: 1.8rem; font-family: var(--font-heading); font-weight: 800; }
     .nav-menu { display: none; }
     
-    /* --- THE ONLY CHANGE IS HERE --- */
     .mobile-icon { 
-      display: flex;         /* Ensures vertical alignment */
-      align-items: center;   /* Ensures vertical alignment */
+      display: flex;
+      align-items: center;
       font-size: 1.8rem; 
     }
 
@@ -196,8 +195,8 @@ const GlobalStyles = () => (
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
     .project-card { background: var(--card-background); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.4s ease, box-shadow 0.4s ease; display: flex; flex-direction: column; }
     .project-card:hover { transform: perspective(1500px) rotateY(-5deg) scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-    .project-image-wrapper { position: relative; padding-top: 56.25%; }
-    .project-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+    .project-image-wrapper { position: relative; padding-top: 56.25%; /* Default 16:9 aspect ratio */ }
+    .project-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; /* Default fit */ }
     .project-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(214, 48, 49, 0.9); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.4s ease; padding: 1rem; }
     .project-card:hover .project-overlay { opacity: 1; }
     .project-description { font-size: 1rem; margin-bottom: 1.5rem; text-align: center; }
@@ -514,34 +513,79 @@ const Skills = ({ setElements }) => {
     </AnimatedSection>
   );
 };
+
 const Projects = ({ setElements }) => {
-  const projectsData = [ { title: " Temperature and Humidity Sensor", description: "A Project based on ESP32 and DHT11 sensor which monitors temperature and humidity of the environment", image: "https://via.placeholder.com/400x250/2575fc/ffffff?text=E-commerce+Site", stack: ["React", "Node.js", "MongoDB"], liveUrl: "#", repoUrl: "#" }, { title: "Portfolio Website", description: "A responsive personal portfolio to showcase my skills and projects.", image: "https://via.placeholder.com/400x250/6a11cb/ffffff?text=Portfolio", stack: ["React", "CSS", "Figma"], liveUrl: "#", repoUrl: "#" }, { title: "Automatic Water Dispensor Sensor", description: "A web application for tracking tasks with a clean, intuitive UI.", image: "https://via.placeholder.com/400x250/34d399/ffffff?text=Task+App", stack: ["Next.js", "Python", "MongoDB"], liveUrl: "#", repoUrl: "#" }, { title: "SEO Audit Tool", description: "A tool to analyze website performance and provide SEO recommendations.", image: "https://via.placeholder.com/400x250/f59e0b/ffffff?text=SEO+Tool", stack: ["React", "SEO APIs"], liveUrl: "#", repoUrl: "#" } ];
-  return (
-    <AnimatedSection id="projects" setElements={setElements}>
-      <div className="container">
-        <h2 className="section-title">My Projects</h2>
-        <div className="projects-grid">{projectsData.map(p => (
-            <div key={p.title} className="project-card">
-              <div className="project-image-wrapper">
-                <img src={p.image} alt={p.title} className="project-image" />
-                <div className="project-overlay">
-                  <p className="project-description">{p.description}</p>
-                  <div className="project-links">
-                    <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="project-button">Live Demo</a>
-                    <a href={p.repoUrl} target="_blank" rel="noopener noreferrer" className="project-button">GitHub</a>
-                  </div>
-                </div>
-              </div>
-              <div className="project-info">
-                <h3 className="project-title">{p.title}</h3>
-                <div className="project-tech-stack">{p.stack.map(tech => <span key={tech} className="tech-badge">{tech}</span>)}</div>
-              </div>
+    const projectsData = [
+        { 
+            title: "Temperature and Humidity Sensor", 
+            description: "A Project based on ESP32 and DHT11 sensor which monitors temperature and humidity of the environment", 
+            image: "/images/temp-humidity-project.jpg", 
+            stack: ["ESP32", "DHT11 sensor", "DHT server"], 
+            links: [
+                { label: "View Project", url: "https://drive.google.com/file/d/1cIb8Fy2OUWf-V7q6365e9wEaTZ8Aw0Ds/view?usp=drivesdk" }
+            ] 
+        },
+        { 
+            title: "Portfolio Website", 
+            description: "A responsive personal portfolio to showcase my skills and projects.", 
+            image: "https://via.placeholder.com/400x250/6a11cb/ffffff?text=Portfolio", 
+            stack: ["React", "CSS", "Figma"], 
+            links: [
+                { label: "Live Demo", url: "#" },
+                { label: "GitHub", url: "#" }
+            ]
+        },
+        { 
+            title: "Automatic Water Dispenser", 
+            description: "An automated water dispenser using Arduino and an ultrasonic sensor for touchless operation.", 
+            image: "/images/automatic-water-dispenser.png", 
+            stack: ["Arduino UNO", "Ultrasonic sensor", "Servo Motor"], 
+            links: [
+                { label: "View Project", url: "https://drive.google.com/file/d/1KdwlDJbuSvSBUZP8TxysFsRyWhIyWemn/view?usp=sharing" }
+            ],
+            // You can adjust the '75%' value to best fit your image's shape.
+            // '100%' would create a perfect square container.
+            // '125%' would create a taller, portrait-style container.
+            wrapperStyle: { paddingTop: '75%' },
+            imageStyle: { objectFit: 'contain', padding: '0.5rem', background: 'var(--card-background)' }
+        }
+    ];
+    return (
+        <AnimatedSection id="projects" setElements={setElements}>
+            <div className="container">
+                <h2 className="section-title">My Projects</h2>
+                <div className="projects-grid">{projectsData.map(p => (
+                    <div key={p.title} className="project-card">
+                        <div 
+                            className="project-image-wrapper"
+                            style={p.wrapperStyle || {}}
+                        >
+                            <img 
+                                src={p.image} 
+                                alt={p.title} 
+                                className="project-image" 
+                                style={p.imageStyle || {}} 
+                            />
+                            <div className="project-overlay">
+                                <p className="project-description">{p.description}</p>
+                                <div className="project-links">
+                                    {p.links.map(link => (
+                                        <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className="project-button">{link.label}</a>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="project-info">
+                            <h3 className="project-title">{p.title}</h3>
+                            <div className="project-tech-stack">{p.stack.map(tech => <span key={tech} className="tech-badge">{tech}</span>)}</div>
+                        </div>
+                    </div>
+                ))}</div>
             </div>
-        ))}</div>
-      </div>
-    </AnimatedSection>
-  );
+        </AnimatedSection>
+    );
 };
+
 const Education = ({ setElements }) => {
     const educationData = [ { icon: <FaGraduationCap />, degree: 'Bachelor of Technology - CSE', institution: 'JODHPUR INSTITUTE OF ENGINEERING AND TECHNOLOGY', years: '2024 - 2028', result: 'CGPA: 9.1' }, { icon: <FaSchool />, degree: 'Class 12 - Science', institution: 'Central Academy Sr.sec School', years: '2022 - 2023', result: 'Percentage: 74' }, { icon: <FaSchool />, degree: 'Class 10', institution: 'Central Academy Sr.sec School', years: '2020 - 2021', result: 'Percentage: 91' } ];
   return (
