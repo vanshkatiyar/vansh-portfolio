@@ -437,7 +437,7 @@ const Hero = () => {
         <p className="hero-tagline">Front-End Developer, Content Writer & a keen learner</p>
         <div className="hero-buttons">
             <ScrollLink to="projects" smooth={true} duration={500} offset={-80} className="cta-button">View My Work</ScrollLink>
-            <a href={resumeFile} download className="cta-button">
+            <a href={resumeFile} download="Vansh-Katiyar-Resume.pdf" className="cta-button">
                 <FaDownload />
                 Download Resume
             </a>
@@ -760,14 +760,13 @@ function App() {
   useEffect(() => {
     const checkTimeAndSetTheme = () => {
         const currentHour = new Date().getHours();
-        // Set dark mode between 6 PM (18) and 6 AM (6)
         const shouldBeDark = currentHour >= 18 || currentHour < 6;
         setIsDarkMode(shouldBeDark);
     };
 
     if (!isThemeManuallySet) {
         checkTimeAndSetTheme();
-        const intervalId = setInterval(checkTimeAndSetTheme, 60000); // Check every minute
+        const intervalId = setInterval(checkTimeAndSetTheme, 60000);
         return () => clearInterval(intervalId);
     }
   }, [isThemeManuallySet]);
