@@ -15,9 +15,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 // --- PROFILE & ASSET IMAGES ---
 const profileImage = "/images/profile.jpg";
-const blogImage1 = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=1740";
-const blogImage2 = "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=1740";
-const blogImage3 = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1740";
+const blogImage1 = "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=1740";
+const blogImage2 = "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1740";
 const resumeFile = "/files/Vansh-Katiyar-Resume.pdf";
 const customCursorImage = "/images/red-cursor.png";
 
@@ -646,9 +645,18 @@ const Testimonials = ({ setElements }) => {
 };
 const Blog = ({ setElements }) => {
     const blogData = [
-        { title: "10 Essential React Hooks You Should Know", excerpt: "Dive deep into the most powerful and commonly used hooks in React to write cleaner and more efficient code.", image: blogImage1, link: "#" },
-        { title: "The Ultimate Guide to SEO for Developers", excerpt: "Learn how to optimize your web applications for search engines, from semantic HTML to structured data.", image: blogImage2, link: "#" },
-        { title: "Crafting a Perfect User Experience with CSS", excerpt: "Explore advanced CSS techniques, animations, and design principles to create delightful user interfaces.", image: blogImage3, link: "#" }
+        { 
+            title: "What is Programming?", 
+            excerpt: "Programming is the process of creating a set of instructions that tell a computer how to perform a task. It is the art of telling a computer what to do.", 
+            image: blogImage1, 
+            link: "https://docs.google.com/document/d/1cWf4G-X8XLWcrHPCYOiGzzWu9pO2JS1E/edit?usp=sharing&ouid=118386794455180805068&rtpof=true&sd=true" 
+        },
+        { 
+            title: "India's TOP 5 Startup Founders", 
+            excerpt: "Using figures from the Tech In Asia database, I’ve created a list of TOP 5 Indian founders in the internet space who have raised millions for their ventures.", 
+            image: blogImage2, 
+            link: "https://docs.google.com/document/d/1w49ocyea_kHdsOjXdk60TT198e6CCDnp/edit?usp=sharing&ouid=118386794455180805068&rtpof=true&sd=true" 
+        }
     ];
     return (
         <AnimatedSection id="blog" setElements={setElements}>
@@ -660,7 +668,7 @@ const Blog = ({ setElements }) => {
                         <div className="blog-content">
                             <h3 className="blog-title">{post.title}</h3>
                             <p className="blog-excerpt">{post.excerpt}</p>
-                            <a href={post.link} className="blog-read-more">Read More →</a>
+                            <a href={post.link} className="blog-read-more" target="_blank" rel="noopener noreferrer">Read More →</a>
                         </div>
                     </div>
                 ))}</div>
