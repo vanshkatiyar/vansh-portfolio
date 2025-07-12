@@ -416,7 +416,7 @@ const Navbar = ({ isDarkMode, handleThemeToggle }) => {
 };
 const Hero = () => {
   const sliderSettings = { dots: false, infinite: true, speed: 1000, fade: true, slidesToShow: 1, slidesToScroll: 1, autoplay: true, autoplaySpeed: 5000, cssEase: "ease-in-out", arrows: false };
-  const slides = [ "/images/hero-1.jpg", "/images/hero-2.jpg" ];
+  const slides = [ "/images/hero-1.jpg", "/images/hero-2.jpg", "/images/hero-3.jpg"];
   const particles = Array.from({ length: 25 });
   return (
     <section id="home" className="hero-section">
