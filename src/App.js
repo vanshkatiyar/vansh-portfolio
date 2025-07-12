@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 // --- DEPENDENCY IMPORTS ---
 import Slider from 'react-slick';
 import { Link as ScrollLink } from 'react-scroll';
-import { FaReact, FaNodeJs, FaPython, FaFigma, FaBars, FaTimes, FaSun, FaMoon, FaGraduationCap, FaSchool, FaLinkedin, FaFacebook, FaInstagram, FaWhatsapp, FaQuoteLeft, FaArrowRight, FaArrowLeft, FaPaperPlane, FaDownload, FaPencilAlt } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaPython, FaFigma, FaBars, FaTimes, FaSun, FaMoon, FaGraduationCap, FaSchool, FaLinkedin, FaFacebook, FaInstagram, FaWhatsapp, FaPaperPlane, FaDownload, FaPencilAlt } from 'react-icons/fa';
 import { SiNextdotjs, SiMongodb, SiGooglesearchconsole, SiGmail, SiC } from 'react-icons/si';
 
 // --- SLICK CAROUSEL CSS IMPORTS ---
@@ -235,19 +235,6 @@ const GlobalStyles = () => (
         .timeline-item:nth-child(even) .timeline-content::after { left: -15px; border-right: 15px solid var(--card-background); border-left: 0; }
         .timeline-item:hover .timeline-content { transform: translateY(-8px) scale(1.03); box-shadow: 0 12px 25px rgba(214, 48, 49, 0.25); }
     }
-    .testimonial-slider-wrapper { position: relative; }
-    .testimonial-card { background: var(--card-background); padding: 2.5rem; margin: 0 1rem; border-radius: 15px; text-align: center; box-shadow: var(--shadow); }
-    .testimonial-avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem auto; border: 4px solid var(--primary-color); }
-    .testimonial-text { font-style: italic; color: var(--text-secondary); margin-bottom: 1.5rem; }
-    .testimonial-icon { font-size: 2rem; color: var(--primary-color); opacity: 0.5; margin-bottom: 1rem; }
-    .testimonial-client { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; }
-    .custom-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; font-size: 1.5rem; color: #ffffff; background: var(--primary-color); border-radius: 50%; width: 50px; height: 50px; display: flex !important; align-items: center; justify-content: center; box-shadow: var(--shadow); transition: all var(--transition-speed); }
-    .custom-arrow:hover { background: var(--secondary-color); transform: translateY(-50%) scale(1.1); }
-    .custom-arrow.slick-arrow::before { content: '' !important; }
-    .next-arrow { right: -25px; }
-    .prev-arrow { left: -25px; }
-    .slick-dots li button:before { font-size: 12px; color: var(--text-secondary); }
-    .slick-dots li.slick-active button:before { color: var(--primary-color); }
     .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
     .blog-card { background: var(--card-background); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
     .blog-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
@@ -312,8 +299,6 @@ const GlobalStyles = () => (
       .contact-content { grid-template-columns: 1fr; }
       .contact-info { text-align: center; margin-top: 2rem; }
       .social-icons { justify-content: center; }
-      .next-arrow { right: 10px; }
-      .prev-arrow { left: 10px; }
     }
   `}</style>
 );
@@ -384,7 +369,7 @@ const AnimatedSection = ({ children, setElements, id, animation = "fade-up", int
 //================================================================================
 // 📄 3. COMPONENT DEFINITIONS
 //================================================================================
-const Navbar = ({ isDarkMode, setIsDarkMode }) => {
+const Navbar = ({ isDarkMode, handleThemeToggle }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNavScrolled, setNavScrolled] = useState(false);
   const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
@@ -393,7 +378,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const navLinks = ["home", "about", "skills", "projects", "education", "testimonials", "blog", "contact"];
+  const navLinks = ["home", "about", "skills", "projects", "education", "blog", "contact"];
   return (
     <nav className={`navbar ${isNavScrolled ? "scrolled" : ""}`}>
       <div className="navbar-container container">
@@ -413,7 +398,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
 
         <div className="nav-actions">
           <button
-            onClick={() => setIsDarkMode(!isDarkMode)}
+            onClick={handleThemeToggle}
             className={`theme-toggle-slider ${isDarkMode ? 'dark' : 'light'}`}
             aria-label="Toggle theme"
           >
@@ -527,7 +512,7 @@ const Projects = ({ setElements }) => {
         { 
             title: "Portfolio Website", 
             description: "A responsive personal portfolio to showcase my skills and projects.", 
-            image: "https://via.placeholder.com/400x250/6a11cb/ffffff?text=Portfolio", 
+            image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&q=80&w=1740", 
             stack: ["React", "CSS", "Figma"], 
             links: [
                 { label: "Live Demo", url: "#" },
@@ -542,10 +527,6 @@ const Projects = ({ setElements }) => {
             links: [
                 { label: "View Project", url: "https://drive.google.com/file/d/1KdwlDJbuSvSBUZP8TxysFsRyWhIyWemn/view?usp=sharing" }
             ],
-            // You can adjust the '75%' value to best fit your image's shape.
-            // '100%' would create a perfect square container.
-            // '125%' would create a taller, portrait-style container.
-            wrapperStyle: { paddingTop: '75%' },
             imageStyle: { objectFit: 'contain', padding: '0.5rem', background: 'var(--card-background)' }
         }
     ];
@@ -557,7 +538,6 @@ const Projects = ({ setElements }) => {
                     <div key={p.title} className="project-card">
                         <div 
                             className="project-image-wrapper"
-                            style={p.wrapperStyle || {}}
                         >
                             <img 
                                 src={p.image} 
@@ -607,41 +587,6 @@ const Education = ({ setElements }) => {
       </div>
     </AnimatedSection>
   );
-};
-const NextArrow = (props) => { const { className, style, onClick } = props; return ( <div className={`${className} custom-arrow next-arrow`} style={{ ...style }} onClick={onClick} aria-label="Next testimonial" > <FaArrowRight /> </div> ); };
-const PrevArrow = (props) => { const { className, style, onClick } = props; return ( <div className={`${className} custom-arrow prev-arrow`} style={{ ...style }} onClick={onClick} aria-label="Previous testimonial" > <FaArrowLeft /> </div> ); };
-
-const Testimonials = ({ setElements }) => {
-    const testimonialsData = [
-        { name: "Jane Doe", company: "Tech Solutions Inc.", avatar: "https://i.pravatar.cc/150?img=1", text: "Vansh's work on our front-end was exceptional. His attention to detail and understanding of user experience is top-notch. Highly recommended!" },
-        { name: "John Smith", company: "Creative Minds Agency", avatar: "https://i.pravatar.cc/150?img=2", text: "The portfolio he built for us was not only beautiful but also incredibly fast and SEO-friendly. Our online presence has never been stronger." },
-        { name: "Emily White", company: "E-Commerce Gurus", avatar: "https://i.pravatar.cc/150?img=3", text: "A true professional. Vansh delivered on time and exceeded our expectations. His React skills are impressive." }
-    ];
-    
-    const sliderSettings = {
-        dots: true, infinite: true, speed: 500, slidesToShow: 1, slidesToScroll: 1, autoplay: true, autoplaySpeed: 4000, nextArrow: <NextArrow />, prevArrow: <PrevArrow />
-    };
-
-    return (
-        <AnimatedSection id="testimonials" setElements={setElements}>
-            <div className="container">
-                <h2 className="section-title">What My Clients Say</h2>
-                <div className="testimonial-slider-wrapper">
-                    <Slider {...sliderSettings}>
-                        {testimonialsData.map((t, i) => (
-                            <div key={i} className="testimonial-card">
-                                <FaQuoteLeft className="testimonial-icon" />
-                                <p className="testimonial-text">"{t.text}"</p>
-                                <img src={t.avatar} alt={t.name} className="testimonial-avatar" />
-                                <h3 className="testimonial-client">{t.name}</h3>
-                                <p className="text-secondary">{t.company}</p>
-                            </div>
-                        ))}
-                    </Slider>
-                </div>
-            </div>
-        </AnimatedSection>
-    );
 };
 const Blog = ({ setElements }) => {
     const blogData = [
@@ -800,6 +745,7 @@ const Footer = () => (
 //================================================================================
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isThemeManuallySet, setThemeManuallySet] = useState(false);
   const [setElements, entries] = useIntersectionObserver({ threshold: 0.2, rootMargin: '0px' });
   
   useEffect(() => {
@@ -810,6 +756,21 @@ function App() {
       }, 2000); 
     }
   }, []);
+  
+  useEffect(() => {
+    const checkTimeAndSetTheme = () => {
+        const currentHour = new Date().getHours();
+        // Set dark mode between 6 PM (18) and 6 AM (6)
+        const shouldBeDark = currentHour >= 18 || currentHour < 6;
+        setIsDarkMode(shouldBeDark);
+    };
+
+    if (!isThemeManuallySet) {
+        checkTimeAndSetTheme();
+        const intervalId = setInterval(checkTimeAndSetTheme, 60000); // Check every minute
+        return () => clearInterval(intervalId);
+    }
+  }, [isThemeManuallySet]);
 
   useEffect(() => {
     document.body.classList.toggle('dark-mode', isDarkMode);
@@ -824,18 +785,22 @@ function App() {
         }
     });
   }, [entries]);
+  
+  const handleThemeToggle = () => {
+      setThemeManuallySet(true);
+      setIsDarkMode(prevMode => !prevMode);
+  };
 
   return (
     <div style={{ width: '100%', overflowX: 'hidden' }}>
       <GlobalStyles />
-      <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
+      <Navbar isDarkMode={isDarkMode} handleThemeToggle={handleThemeToggle}/>
       <main>
         <Hero />
         <About setElements={setElements} />
         <Skills setElements={setElements} />
         <Projects setElements={setElements} />
         <Education setElements={setElements} />
-        <Testimonials setElements={setElements} />
         <Blog setElements={setElements} />
         <Contact setElements={setElements} />
       </main>
