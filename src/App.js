@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 // --- DEPENDENCY IMPORTS ---
 import Slider from 'react-slick';
 import { Link as ScrollLink } from 'react-scroll';
-import { FaReact, FaNodeJs, FaPython, FaFigma, FaBars, FaTimes, FaSun, FaMoon, FaGraduationCap, FaSchool, FaLinkedin, FaFacebook, FaInstagram, FaWhatsapp, FaPaperPlane, FaDownload, FaPencilAlt } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaPython, FaFigma, FaBars, FaTimes, FaSun, FaMoon, FaGraduationCap, FaSchool, FaLinkedin, FaFacebook, FaInstagram, FaWhatsapp, FaPaperPlane, FaDownload, FaPencilAlt, FaArrowUp } from 'react-icons/fa';
 import { SiNextdotjs, SiMongodb, SiGooglesearchconsole, SiGmail, SiC } from 'react-icons/si';
 
 // --- SLICK CAROUSEL CSS IMPORTS ---
@@ -13,7 +13,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // --- RESUME & ASSET IMPORTS ---
-import resumeFile from './assets/Vansh-Katiyar-Resume.pdf'; // <-- IMPORT THE RESUME FILE
+import resumeFile from './assets/Vansh-Katiyar-Resume.pdf';
 const profileImage = "/images/profile.jpg";
 const blogImage1 = "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=1740";
 const blogImage2 = "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1740";
@@ -52,7 +52,7 @@ const GlobalStyles = () => (
     
     @media (pointer: fine) {
       body { cursor: url(${customCursorImage}), auto; }
-      a, button, input, textarea, .slick-arrow, .theme-toggle-slider, .mobile-icon, .skill-card, .project-card { cursor: url(${customCursorImage}), pointer; }
+      a, button, input, textarea, .slick-arrow, .theme-toggle-slider, .mobile-icon, .skill-card, .project-card, .scroll-to-top { cursor: url(${customCursorImage}), pointer; }
     }
 
     .section.interactive-bg { position: relative; z-index: 1; }
@@ -283,6 +283,36 @@ const GlobalStyles = () => (
     .footer-socials .gmail-icon { color: var(--primary-color); }
     .footer { background: #101010; padding: 2.5rem 1rem; text-align: center; border-top: 1px solid #333; }
     body:not(.dark-mode) .footer { background: #e9ecef; border-top: 1px solid #ddd; }
+    
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: var(--primary-color);
+      color: #ffffff;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      z-index: 1000;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(100px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .scroll-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .scroll-to-top:hover {
+      background-color: var(--secondary-color);
+      transform: scale(1.1);
+    }
+    
     @media (max-width: 768px) {
       html { font-size: 90%; }
       .section { padding: 4rem 0; }
@@ -298,6 +328,13 @@ const GlobalStyles = () => (
       .contact-content { grid-template-columns: 1fr; }
       .contact-info { text-align: center; margin-top: 2rem; }
       .social-icons { justify-content: center; }
+      .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        right: 20px;
+        bottom: 20px;
+        font-size: 1.2rem;
+      }
     }
   `}</style>
 );
@@ -368,6 +405,42 @@ const AnimatedSection = ({ children, setElements, id, animation = "fade-up", int
 //================================================================================
 // 📄 3. COMPONENT DEFINITIONS
 //================================================================================
+const ScrollToTopButton = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    const toggleVisibility = () => {
+        if (window.pageYOffset > 300) {
+            setIsVisible(true);
+        } else {
+            setIsVisible(false);
+        }
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', toggleVisibility);
+        return () => {
+            window.removeEventListener('scroll', toggleVisibility);
+        };
+    }, []);
+
+    return (
+        <button
+            className={`scroll-to-top ${isVisible ? 'visible' : ''}`}
+            onClick={scrollToTop}
+            aria-label="Go to top"
+        >
+            <FaArrowUp />
+        </button>
+    );
+};
+
 const Navbar = ({ isDarkMode, handleThemeToggle }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNavScrolled, setNavScrolled] = useState(false);
@@ -416,7 +489,7 @@ const Navbar = ({ isDarkMode, handleThemeToggle }) => {
 };
 const Hero = () => {
   const sliderSettings = { dots: false, infinite: true, speed: 1000, fade: true, slidesToShow: 1, slidesToScroll: 1, autoplay: true, autoplaySpeed: 5000, cssEase: "ease-in-out", arrows: false };
-  const slides = [ "/images/hero-1.jpg", "/images/hero-2.jpg", "/images/hero-3.jpg"];
+  const slides = [ "/images/hero-1.jpg", "/images/hero-2.jpg" ];
   const particles = Array.from({ length: 25 });
   return (
     <section id="home" className="hero-section">
@@ -803,6 +876,7 @@ function App() {
         <Contact setElements={setElements} />
       </main>
       <Footer />
+      <ScrollToTopButton />
     </div>
   );
 }
