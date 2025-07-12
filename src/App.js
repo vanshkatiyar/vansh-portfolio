@@ -12,12 +12,11 @@ import { SiNextdotjs, SiMongodb, SiGooglesearchconsole, SiGmail, SiC } from 'rea
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
-// --- PROFILE & ASSET IMAGES ---
+// --- RESUME & ASSET IMPORTS ---
+import resumeFile from './assets/Vansh-Katiyar-Resume.pdf'; // <-- IMPORT THE RESUME FILE
 const profileImage = "/images/profile.jpg";
 const blogImage1 = "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=1740";
 const blogImage2 = "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1740";
-const resumeFile = "/files/Vansh-Katiyar-Resume.pdf";
 const customCursorImage = "/images/red-cursor.png";
 
 //================================================================================
